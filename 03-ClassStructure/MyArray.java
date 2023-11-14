@@ -84,22 +84,14 @@ public class MyArray {
 
     public static int secondMax(int[] array) {
         int max = 0;
-        
+        int second = 0;
         for (int i=0; i < array.length; i++) {
             if (array[i] > max) {
+                second = max;
                 max = array[i];
             }
         }
-        for (int j=0; j < array.length; j++) {
-            array[j] = array[j]-max;
-        }
-        int secondMax = 0-max;
-        for (int nd:array) {
-            if (nd < 0 && nd > secondMax) {
-                secondMax = nd;
-            }
-        }
-        return secondMax+max;
+       return second;
     }
 
     public static int lastColumn(int[][] array) {
