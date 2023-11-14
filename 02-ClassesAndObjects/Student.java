@@ -6,6 +6,7 @@ public class Student  {
     int semNum;
     float avGrade;
 
+    
     void sayHello() {
         System.out.println("Hello from " +name);
     }

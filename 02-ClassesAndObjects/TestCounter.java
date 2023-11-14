@@ -1,7 +1,7 @@
 public class TestCounter {
     public static void main(String[] args) {
-        Counter c1 = new Counter();
-        Counter c2 = new Counter();
+        Counters c1 = new Counters();
+        Counters c2 = new Counters();
 
         c1.AddOne();
         c1.AddOne();

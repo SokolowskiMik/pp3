@@ -24,6 +24,22 @@ public class GuessMyNumber {
                 condition = false;
                 in.close();
             }
+            else if (numberGuessed > myNumber) {
+                System.out.print("Type a number: ");
+                numberGuessed = in.nextInt();
+                System.out.println("\nYour guess is: " + numberGuessed);
+                off = Math.abs(myNumber-numberGuessed);
+                System.out.printf("Your guess is too high and you were off by: %d", off);
+                System.out.println("\nTry again!\n");
+            }
+            else if (numberGuessed < myNumber) {
+                System.out.print("Type a number: ");
+                numberGuessed = in.nextInt();
+                System.out.println("\nYour guess is: " + numberGuessed);
+                off = Math.abs(myNumber-numberGuessed);
+                System.out.printf("Your guess is too small and you were off by: %d", off);
+                System.out.println("\nTry again!\n");
+            }
             else {
                 System.out.print("Type a number: ");
                 numberGuessed = in.nextInt();

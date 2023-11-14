@@ -1,9 +1,9 @@
-public class Student {
+public class StudentOne {
     private String name;
     private int age;
 
     /* mozna tworzyc klikaajac prawym source action i tam wybieramy construktor albo getter albo setter */
-    public Student(String name, int age) {
+    public StudentOne(String name, int age) {
         this.name = name;
         this.age = age;
     }

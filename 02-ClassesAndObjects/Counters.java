@@ -1,4 +1,4 @@
-public class Counter {
+public class Counters {
     int value = 0;
 
     void AddOne() {
