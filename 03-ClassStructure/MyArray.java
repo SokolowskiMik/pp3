@@ -24,7 +24,7 @@ public class MyArray {
     public static int[] reverse(int[] array) {
         int[] reversed = new int[array.length];
         int j = 0;
-        for (int i=array.length-1; i <= 0; i--) {
+        for (int i=array.length-1; i >= 0; i--) {
             reversed[j] = array[i];
             j++;
         }
@@ -38,39 +38,28 @@ public class MyArray {
     public static int[] different(int[] array1, int[] array2) {
         int counter = 0;
         int iterator = 0;
-        boolean flag=false;
-        for (int i:array1) {
-            for (int j:array2) {
-                if (flag == false) {
-                    if (i==j) {
-                        flag = true;
-                    } else {
-                        flag = false;
-                    }
+        int arrayLengthCounter = 0;
+        int[] different = new int[array1.length];
+        for (int i=0; i <= array1.length-1; i++){
+            counter = 0;
+            for (int j = 0; j <= array2.length - 1; j++) {
+                if (array1[i] != array2[j]) {
+                    counter ++;
                 }
-            } 
-            if (flag == false) {
-                counter++;
+            }
+            if (counter == array2.length) {
+                different[iterator] = array1[i];
+                iterator ++;
+                arrayLengthCounter ++;
             }
         }
-        
-        int[] different = new int[counter];
-        for (int i:array1) {
-            for (int j:array2) {
-                if (flag == false) {
-                    if (i==j) {
-                        flag = true;
-                    } else {
-                        flag = false;
-                    }
-                }
-            } 
-            if (flag == false) {
-                different[iterator] = i;
-                iterator++;
-            }
+
+        int[] diffArr = new int[arrayLengthCounter];
+
+        for (int i=0; i < arrayLengthCounter; i++) {
+            diffArr[i] = different[i];
         }
-        return different;
+        return diffArr;
     }
 
     public static boolean exist(int number, int[] array) {
@@ -83,15 +72,8 @@ public class MyArray {
     }
 
     public static int secondMax(int[] array) {
-        int max = 0;
-        int second = 0;
-        for (int i=0; i < array.length; i++) {
-            if (array[i] > max) {
-                second = max;
-                max = array[i];
-            }
-        }
-       return second;
+        Arrays.sort(array);
+       return array[array.length-2];
     }
 
     public static int lastColumn(int[][] array) {
@@ -108,12 +90,7 @@ public class MyArray {
 
     public static int[][] swap(int[][] array) {
         int[][] newArray = new int[array.length][array[0].length];
-        for (int i=0; i < array.length; i++) {
-            for (int col = 0; col < array[0].length-2; col++) {
-               newArray[i][col] = array[i][col]; 
-            }
-        }
-        for (int i=0; i < array.length; i++) {
+        for (int i=array.length-1; i >= 0 ; i--) {
             for (int col = array[0].length-1; col >= array[0].length-2; col--) {
                newArray[i][col] = array[i][col]; 
             }
@@ -134,7 +111,7 @@ public class MyArray {
     }
 
     public static void main(String[] args) {
-        int[] a = {1,2,3,4,5,6,7,8,9,10};
+        int[] a = {1,2,3,4,5,6,7,8,11,9,10};
         int[] b = {1,2,3,4,5,6,7,8,9,1};
         int[][] c = {{1,3},{2,4}};
         System.out.println(even(a));
