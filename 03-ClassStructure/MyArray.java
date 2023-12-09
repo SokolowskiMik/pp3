@@ -1,5 +1,5 @@
 import java.util.Arrays;
-
+import java.util.*;
 public class MyArray {
     public static int even(int[] array) {
         int evenCounter = 0;
@@ -36,28 +36,27 @@ public class MyArray {
     }
 
     public static int[] different(int[] array1, int[] array2) {
-        int counter = 0;
-        int iterator = 0;
-        int arrayLengthCounter = 0;
-        int[] different = new int[array1.length];
-        for (int i=0; i <= array1.length-1; i++){
-            counter = 0;
-            for (int j = 0; j <= array2.length - 1; j++) {
-                if (array1[i] != array2[j]) {
-                    counter ++;
-                }
-            }
-            if (counter == array2.length) {
-                different[iterator] = array1[i];
-                iterator ++;
-                arrayLengthCounter ++;
-            }
+
+        List<Integer> list1 = new ArrayList<>();
+        List<Integer> uniqueList = new ArrayList<>();
+
+        for (int number:array2) {
+            list1.add(number);
         }
+        
+        for (int check:array1) {
+            if (list1.contains(check)) {
+                continue;
+            } else {
+                uniqueList.add(check);
+            }
 
-        int[] diffArr = new int[arrayLengthCounter];
+        }
+        
+        int[] diffArr = new int[uniqueList.size()];
 
-        for (int i=0; i < arrayLengthCounter; i++) {
-            diffArr[i] = different[i];
+        for (int i=0; i < uniqueList.size(); i++) {
+            diffArr[i] = uniqueList.get(i);
         }
         return diffArr;
     }
@@ -78,13 +77,12 @@ public class MyArray {
 
     public static int lastColumn(int[][] array) {
         int sum = 0;
-        for (int i=0; i < array.length; i++) {
-            for (int col = 0; col < array[0].length; col++) {
-                if (col == array[0].length) {
-                    sum += array[i][col];
-                }
-            }
+        int LAST_COL = array[0].length - 1;
+
+        for (int row=0; row < array.length; row++) {
+            sum += array[row][LAST_COL];
         }
+        
         return sum;
     }
 
@@ -99,15 +97,38 @@ public class MyArray {
 
     }
 
-    public static int[] two2one(int[][] array) {
-        int[] newArray = new int[array.length+array[0].length]; 
-        for (int i=0; i < array.length; i++) {
-            for (int col = 0; col < array[0].length; col++) {
-                newArray[i+col] = array[i][col];
+    public static List<Integer> two2one(int[][] array) {
+        List<Integer> oneD = new ArrayList<>();
+
+        for (int col = 0;  col < array[0].length; col++) {
+            for (int i=0; i < array.length; i++) {
+                oneD.add(array[i][col]);
             }
 
         }
-        return newArray;
+        //Collections.sort(oneD);
+        return oneD;
+    }
+
+    public static String addSign(String s) {
+        List<String> signedList = new ArrayList<>();
+        char[] charArr = s.toCharArray();
+        boolean found = false;
+        for (char c:charArr) {
+            if (s.indexOf(c) < s.length()-1) {
+                if (found) {
+                    signedList.add(c + "-");
+                    found = false;
+                } else {
+                    signedList.add(c+"+");
+                    found = true;
+                }
+            } else {
+                signedList.add(c+"");
+            }
+
+        }
+        return String.join("", signedList);
     }
 
     public static void main(String[] args) {
@@ -115,16 +136,31 @@ public class MyArray {
         int[] b = {1,2,3,4,5,6,7,8,9,1};
         int[][] c = {{1,3},{2,4}};
         System.out.println(even(a));
+        System.out.println();
         System.out.println(positiveOdd(a));
+        System.out.println();
         System.out.println(Arrays.toString(reverse(a)));
+        System.out.println();
         System.out.println(compare(a,b));
+        System.out.println();
         System.out.println(Arrays.toString(different(a,b)));
+        System.out.println();
         System.out.println(exist(10,a));
         System.out.println(exist(10,b));
+        System.out.println();
         System.out.println(secondMax(a));
+        System.out.println();
         System.out.println(compare(a,b));
+        System.out.println();
         System.out.println(lastColumn(c));
+        System.out.println();
         System.out.println(Arrays.deepToString(swap(c)));
-        System.out.println(Arrays.toString(two2one(c)));
+        System.out.println();
+        System.out.println((two2one(c).toString()));
+
+        System.out.println();
+        System.out.println(addSign("pineapple"));
+        System.out.println();
+        System.out.println(addSign("Board"));
     }
 }
