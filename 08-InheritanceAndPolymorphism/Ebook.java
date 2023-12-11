@@ -1,8 +1,8 @@
 public class Ebook extends Book {
     private String fileName;
 
-    public Ebook(String title, String author, String fileName) {
-        super(title, author);
+    public Ebook(String title, String author, Publisher publisher, String fileName) {
+        super(title, author, publisher);
         this.fileName = fileName;
     }
 
